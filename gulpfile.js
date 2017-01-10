@@ -39,7 +39,6 @@ gulp.task('concat-uglify-js', ['cache-templates'], function() {
       dst + '/' + jsFile
     ])
     .pipe(concat(jsFile))
-    .pipe(uglify())
     .pipe(gulp.dest(dst));
 });
 
@@ -54,7 +53,7 @@ gulp.task('lint', function () {
   return gulp.src([src + 'js/app.js', src + 'js/*/*.js'])
     .pipe(eslint({
       'rules': {
-          'quotes': [2, 'single'], 
+          'quotes': [2, 'single'],
           //'linebreak-style': [2, 'unix'],
           'semi': [2, 'always']
       },
@@ -71,5 +70,11 @@ gulp.task('lint', function () {
     .pipe(eslint.failOnError());
 });
 
-gulp.task('default', ['concat-uglify-js', 'minify-css']);
-gulp.task('build', ['clean', 'lint', 'default']);
+gulp.task('watch', function () {
+    gulp.watch(['src/js/**/*.js', 'src/templates/*.html'], ['build']);
+});
+
+
+gulp.task('minify', ['concat-uglify-js', 'minify-css']);
+gulp.task('build', ['clean', 'lint', 'minify']);
+gulp.task('default', ['watch']);

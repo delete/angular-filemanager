@@ -1,9 +1,12 @@
 <div id="context-menu" class="dropdown clearfix animated fast fadeIn">
-    <ul class="dropdown-menu dropdown-right-click" role="menu" aria-labelledby="dropdownMenu" ng-show="temps.length">
+    <!-- Only shows if
+    - ( has some item in folder ) AND ( A folder and a file is not selected OR only folders are selected )
+    -->
+    <ul class="dropdown-menu dropdown-right-click" role="menu" aria-labelledby="dropdownMenu" ng-show="temps.length && !( (selectionHas('dir') && selectionHas('file')) || ( (selectionHas('dir') && !selectionHas('file')) && temps.length > 1) )">
 
         <li ng-show="singleSelection() && singleSelection().isFolder()">
             <a href="" tabindex="-1" ng-click="smartClick(singleSelection())">
-                <i class="glyphicon glyphicon-folder-open"></i> {{'open' | translate}}
+                <i class="fa fa-folder-open"></i> {{'open' | translate}}
             </a>
         </li>
 
@@ -13,15 +16,21 @@
             </a>
         </li>
 
-        <li ng-show="config.allowedActions.download && !selectionHas('dir') && singleSelection()">
+        <li ng-show="config.allowedActions.download && !selectionHas('dir') && singleSelection() && isButtonEnabled('download')">
             <a href="" tabindex="-1" ng-click="download()">
-                <i class="glyphicon glyphicon-cloud-download"></i> {{'download' | translate}}
+                <i class="fa fa-cloud-download"></i> {{'download' | translate}}
+            </a>
+        </li>
+
+        <li ng-show="!selectionHas('dir') && singleSelection() && isButtonEnabled('restore')">
+            <a href="" tabindex="-1" ng-click="console.log('must implement this')">
+                <i class="fa fa-recycle"></i> {{'restore' | translate}}
             </a>
         </li>
 
         <li ng-show="config.allowedActions.downloadMultiple && !selectionHas('dir') && !singleSelection()">
             <a href="" tabindex="-1" ng-click="download()">
-                <i class="glyphicon glyphicon-cloud-download"></i> {{'download_as_zip' | translate}}
+                <i class="fa fa-cloud-download"></i> {{'download_as_zip' | translate}}
             </a>
         </li>
 
@@ -73,9 +82,9 @@
             </a>
         </li>
 
-        <li class="divider" ng-show="config.allowedActions.remove"></li>
-        
-        <li ng-show="config.allowedActions.remove">
+        <li class="divider" ng-show="config.allowedActions.remove && !selectionHas('dir')"></li>
+
+        <li ng-show="config.allowedActions.remove && !selectionHas('dir')">
             <a href="" tabindex="-1" ng-click="modal('remove')">
                 <i class="glyphicon glyphicon-trash"></i> {{'remove' | translate}}
             </a>
@@ -86,12 +95,12 @@
     <ul class="dropdown-menu dropdown-right-click" role="menu" aria-labelledby="dropdownMenu" ng-show="!temps.length">
         <li ng-show="config.allowedActions.createFolder">
             <a href="" tabindex="-1" ng-click="modal('newfolder') && prepareNewFolder()">
-                <i class="glyphicon glyphicon-plus"></i> {{'new_folder' | translate}}
+                <i class="fa fa-plus"></i> {{'new_folder' | translate}}
             </a>
         </li>
         <li ng-show="config.allowedActions.upload">
             <a href="" tabindex="-1" ng-click="modal('uploadfile')">
-                <i class="glyphicon glyphicon-cloud-upload"></i> {{'upload_files' | translate}}
+                <i class="fa fa-cloud-upload"></i> {{'upload_files' | translate}}
             </a>
         </li>
     </ul>

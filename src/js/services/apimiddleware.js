@@ -1,6 +1,6 @@
 (function(angular) {
     'use strict';
-    angular.module('FileManagerApp').service('apiMiddleware', ['$window', 'fileManagerConfig', 'apiHandler', 
+    angular.module('FileManagerApp').service('apiMiddleware', ['$window', 'fileManagerConfig', 'apiHandler',
         function ($window, fileManagerConfig, ApiHandler) {
 
         var ApiMiddleware = function() {
@@ -81,9 +81,9 @@
             if (item.isFolder()) {
                 return;
             }
-            
+
             return this.apiHandler.download(
-                fileManagerConfig.downloadFileUrl, 
+                fileManagerConfig.downloadFileUrl,
                 itemPath,
                 toFilename,
                 fileManagerConfig.downloadFilesByAjax,
@@ -95,11 +95,11 @@
             var items = this.getFileList(files);
             var timestamp = new Date().getTime().toString().substr(8, 13);
             var toFilename = timestamp + '-' + fileManagerConfig.multipleDownloadFileName;
-            
+
             return this.apiHandler.downloadMultiple(
-                fileManagerConfig.downloadMultipleUrl, 
-                items, 
-                toFilename, 
+                fileManagerConfig.downloadMultipleUrl,
+                items,
+                toFilename,
                 fileManagerConfig.downloadFilesByAjax,
                 forceNewWindow
             );

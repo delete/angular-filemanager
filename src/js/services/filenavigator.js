@@ -66,7 +66,7 @@
                 self.requesting = false;
             });
         };
-        
+
         FileNavigator.prototype.buildTree = function(path) {
             var flatNodes = [], selectedNode = {};
 
@@ -87,7 +87,7 @@
                     }
                     parent.nodes.push({item: item, name: absName, nodes: []});
                 }
-                
+
                 parent.nodes = parent.nodes.sort(function(a, b) {
                     return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : a.name.toLowerCase() === b.name.toLowerCase() ? 0 : 1;
                 });

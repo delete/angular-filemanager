@@ -1,5 +1,5 @@
-<ul class="nav nav-sidebar file-tree-root">
-    <li ng-repeat="item in fileNavigator.history" ng-include="'folder-branch-item'" ng-class="{'active': item.name == fileNavigator.currentPath.join('/')}"></li>
+<ul class="nav nav-sidebar file-tree-root" style="padding-top:17px">
+    <li ng-repeat="item in fileNavigator.history" ng-include="'folder-branch-item'" ng-class="{'activee': item.name == fileNavigator.currentPath.join('/')}"></li>
 </ul>
 
 <script type="text/ng-template" id="folder-branch-item">
@@ -10,11 +10,11 @@
             <i class="glyphicon glyphicon-chevron-right" ng-show="!isInThisPath(item.name)"></i>
         </span>
 
-        <i class="glyphicon glyphicon-folder-open mr2" ng-show="isInThisPath(item.name)"></i>
-        <i class="glyphicon glyphicon-folder-close mr2" ng-show="!isInThisPath(item.name)"></i>
-        {{ (item.name.split('/').pop() || fileNavigator.getBasePath().join('/') || '/') | strLimit : 30 }}
+        <i class="fa fa-folder-open" ng-show="isInThisPath(item.name)"></i>
+        <i class="fa fa-folder" ng-show="!isInThisPath(item.name)"></i>
+        {{ (item.name.split('/').pop() || '/') | strLimit : 30 }}
     </a>
     <ul class="nav nav-sidebar">
-        <li ng-repeat="item in item.nodes" ng-include="'folder-branch-item'" ng-class="{'active': item.name == fileNavigator.currentPath.join('/')}"></li>
+        <li ng-repeat="item in item.nodes" ng-include="'folder-branch-item'" ng-class="{'activee': item.name == fileNavigator.currentPath.join('/')}"></li>
     </ul>
 </script>

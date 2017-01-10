@@ -254,7 +254,8 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="apiMiddleware.apiHandler.inprocess">{{"cancel" | translate}}</button>
-              <button type="submit" class="btn btn-primary" ng-disabled="apiMiddleware.apiHandler.inprocess">{{'create' | translate}}</button>
+              <!-- <button type="submit" class="btn btn-primary" ng-disabled="apiMiddleware.apiHandler.inprocess">{{'create' | translate}}</button> -->
+              <md-button class="md-raised myDialog__button btn-fill-vert-o btn-blue" ng-disabled="apiMiddleware.apiHandler.inprocess" type="submit">{{'create' | translate}}</md-button>
             </div>
         </form>
     </div>
@@ -274,13 +275,13 @@
             </div>
             <div class="modal-body">
               <label class="radio">
-                {{"files_will_uploaded_to" | translate}} 
+                {{"files_will_uploaded_to" | translate}}
                 <b>/{{fileNavigator.currentPath.join('/')}}</b>
               </label>
               <button class="btn btn-default btn-block" ngf-select="$parent.addForUpload($files)" ngf-multiple="true">
                 {{"select_files" | translate}}
               </button>
-              
+
               <div class="upload-list">
                 <ul class="list-group">
                   <li class="list-group-item" ng-repeat="(index, uploadFile) in $parent.uploadFileList">
@@ -303,7 +304,8 @@
             <div class="modal-footer">
               <div>
                   <button type="button" class="btn btn-default" data-dismiss="modal">{{"cancel" | translate}}</button>
-                  <button type="submit" class="btn btn-primary" ng-disabled="!$parent.uploadFileList.length || apiMiddleware.apiHandler.inprocess">{{'upload' | translate}}</button>
+                  <!-- <button type="submit" class="btn btn-primary" ng-disabled="!$parent.uploadFileList.length || apiMiddleware.apiHandler.inprocess">{{'upload' | translate}}</button> -->
+                  <md-button class="md-raised myDialog__button " ng-class="{'btn-fill-vert-o btn-blue': $parent.uploadFileList.length }" ng-disabled="!$parent.uploadFileList.length || apiMiddleware.apiHandler.inprocess" type="submit">{{'upload' | translate}}</md-button>
               </div>
             </div>
         </form>
@@ -350,13 +352,13 @@
               </div>
               <div class="clearfix mt10">
                   <span class="label label-primary pull-left" ng-hide="temp.multiple">
-                    {{'original' | translate}}: 
-                    {{temp.model.perms.toCode(selectionHas('dir') ? 'd':'-')}} 
+                    {{'original' | translate}}:
+                    {{temp.model.perms.toCode(selectionHas('dir') ? 'd':'-')}}
                     ({{temp.model.perms.toOctal()}})
                   </span>
                   <span class="label label-primary pull-right">
-                    {{'changes' | translate}}: 
-                    {{temp.tempModel.perms.toCode(selectionHas('dir') ? 'd':'-')}} 
+                    {{'changes' | translate}}:
+                    {{temp.tempModel.perms.toCode(selectionHas('dir') ? 'd':'-')}}
                     ({{temp.tempModel.perms.toOctal()}})
                   </span>
               </div>
@@ -402,7 +404,7 @@
   <div class="panel panel-primary mt10 mb0">
     <div class="panel-body">
         <div class="detail-sources">
-          <div class="like-code mr5"><b>{{"selection" | translate}}:</b>
+          <div class="like-code mr5"><b>{{"Selection" | translate}}:</b>
             <span ng-include="'selected-files-msg'"></span>
           </div>
         </div>

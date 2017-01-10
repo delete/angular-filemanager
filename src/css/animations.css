@@ -60,23 +60,23 @@
 
 @keyframes colors {
   0% {
-    stroke: #4285F4;
+    stroke: #1976D2;
   }
 
   25% {
-    stroke: #DE3E35;
+    stroke: #1976D2;
   }
 
   50% {
-    stroke: #F7C223;
+    stroke: #1976D2;
   }
 
   75% {
-    stroke: #1B9A59;
+    stroke: #1976D2;
   }
 
   100% {
-    stroke: #4285F4;
+    stroke: #1976D2;
   };
 }
 
@@ -84,19 +84,19 @@
   0% {
     stroke-dasharray: 1,150;
     stroke-dashoffset: 0;
-    stroke: red;
+    stroke: #1976D2;
   }
 
   50% {
     stroke-dasharray: 90,150;
     stroke-dashoffset: -35;
-    stroke: yellow;
+    stroke: #1976D2;
   }
 
   100% {
     stroke-dasharray: 90,150;
     stroke-dashoffset: -124;
-    stroke: green;
+    stroke: #1976D2;
   };
 }
 

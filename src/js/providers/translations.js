@@ -73,6 +73,8 @@
             rename: 'Rename',
             extract: 'Extract',
             compress: 'Compress',
+            refresh: 'Refresh',
+            restore: 'Restore',
             error_invalid_filename: 'Invalid filename or already exists, specify another name',
             error_modifying: 'An error occurred modifying the file',
             error_deleting: 'An error occurred deleting the file or folder',
@@ -98,7 +100,9 @@
             open: 'Open',
             these_elements: 'these {{total}} elements',
             new_folder: 'New folder',
-            download_as_zip: 'Download as ZIP'
+            download_as_zip: 'Download as ZIP',
+            myfiles: 'My files',
+            trash: 'Trash'
         });
 
         $translateProvider.translations('he', {
@@ -171,6 +175,8 @@
             rename: 'שנה שם',
             extract: 'חלץ',
             compress: 'כווץ',
+            refresh: 'לְרַעֲנֵן',
+            restore: 'לשחזר',
             error_invalid_filename: 'שם קובץ אינו תקין או קיים, ציין שם קובץ אחר',
             error_modifying: 'התרחשה שגיאה בעת שינוי הקובץ',
             error_deleting: 'התרחשה שגיאה בעת מחיקת הקובץ או התיקייה',
@@ -195,7 +201,9 @@
             preview: 'הצגת פריט',
             open: 'פתח',
             new_folder: 'תיקיה חדשה',
-            download_as_zip: 'להוריד כמו'
+            download_as_zip: 'להוריד כמו',
+            myfiles: '',
+            trash: ''
         });
 
         $translateProvider.translations('pt', {
@@ -218,7 +226,7 @@
             confirm: 'Confirmar',
             cancel: 'Cancelar',
             close: 'Fechar',
-            upload_files: 'Carregar arquivos',
+            upload_files: 'Enviar arquivos',
             files_will_uploaded_to: 'Os arquivos serão enviados para',
             select_files: 'Selecione os arquivos',
             uploading: 'Carregar',
@@ -268,6 +276,8 @@
             rename: 'Renomear',
             extract: 'Extrair',
             compress: 'Comprimir',
+            refresh: 'Atualizar',
+            restore: 'Restaurar',
             error_invalid_filename: 'Nome do arquivo inválido ou nome de arquivo já existe, especifique outro nome',
             error_modifying: 'Ocorreu um erro ao modificar o arquivo',
             error_deleting: 'Ocorreu um erro ao excluir o arquivo ou pasta',
@@ -293,7 +303,9 @@
             open: 'Abrir',
             these_elements: 'estes {{total}} elements',
             new_folder: 'Nova pasta',
-            download_as_zip: 'Download como ZIP'
+            download_as_zip: 'Download como ZIP',
+            myfiles: 'Meus arquivos',
+            trash: 'Lixeira'
         });
 
         $translateProvider.translations('es', {
@@ -366,6 +378,8 @@
             rename: 'Renombrar',
             extract: 'Extraer',
             compress: 'Comprimir',
+            refresh: 'Refrescar',
+            restore: 'Restaurar',
             error_invalid_filename: 'El nombre del archivo es invalido o ya existe',
             error_modifying: 'Ocurrio un error al intentar modificar el archivo',
             error_deleting: 'Ocurrio un error al intentar eliminar el archivo',
@@ -391,7 +405,9 @@
             open: 'Abrir',
             these_elements: 'estos {{total}} elementos',
             new_folder: 'Nueva carpeta',
-            download_as_zip: 'Descargar como ZIP'
+            download_as_zip: 'Descargar como ZIP',
+            myfiles: 'Mis archivos',
+            trash: 'Vertedero'
         });
 
         $translateProvider.translations('fr', {
@@ -464,6 +480,8 @@
             rename: 'Renommer',
             extract: 'Extraire',
             compress: 'Compresser',
+            refresh: 'Rafraîchir',
+            restore: 'Restaurer',
             error_invalid_filename: 'Nom de fichier invalide ou déjà existant, merci de spécifier un autre nom',
             error_modifying: 'Une erreur est survenue pendant la modification du fichier',
             error_deleting: 'Une erreur est survenue pendant la suppression du fichier ou du dossier',
@@ -489,7 +507,9 @@
             open: 'Ouvrir',
             these_elements: 'ces {{total}} éléments',
             new_folder: 'Nouveau dossier',
-            download_as_zip: 'Télécharger comme ZIP'
+            download_as_zip: 'Télécharger comme ZIP',
+            myfiles: '',
+            trash: ''
         });
 
         $translateProvider.translations('de', {
@@ -562,6 +582,8 @@
             rename: 'Umbenennen',
             extract: 'Entpacken',
             compress: 'Komprimieren',
+            refresh: 'Erneuern',
+            restore: 'Wiederherstellen',
             error_invalid_filename: 'Ungültiger Dateiname oder existiert bereits',
             error_modifying: 'Beim Bearbeiten der Datei ist ein Fehler aufgetreten',
             error_deleting: 'Beim Löschen der Datei oder des Ordners ist ein Fehler aufgetreten',
@@ -587,7 +609,9 @@
             open: 'Öffnen',
             these_elements: 'diese {{total}} elemente',
             new_folder: 'Neuer ordner',
-            download_as_zip: 'Download als ZIP'
+            download_as_zip: 'Download als ZIP',
+            myfiles: '',
+            trash: ''
         });
 
         $translateProvider.translations('sk', {
@@ -660,6 +684,8 @@
             rename: 'Premenovať',
             extract: 'Rozbaliť',
             compress: 'Komprimovať',
+            refresh: 'Obnoviť',
+            restore: 'Rbnoviť',
             error_invalid_filename: 'Neplatné alebo duplicitné meno súboru, vyberte iné meno',
             error_modifying: 'Vyskytla sa chyba pri upravovaní súboru',
             error_deleting: 'Vyskytla sa chyba pri mazaní súboru alebo priečinku',
@@ -685,7 +711,9 @@
             open: 'Otvoriť',
             these_elements: 'týchto {{total}} prvkov',
             new_folder: 'Nový priečinok',
-            download_as_zip: 'Stiahnuť ako ZIP'
+            download_as_zip: 'Stiahnuť ako ZIP',
+            myfiles: '',
+            trash: ''
         });
 
         $translateProvider.translations('zh', {
@@ -758,6 +786,8 @@
             rename: '重命名',
             extract: '解压',
             compress: '压缩',
+            refresh: '刷新',
+            restore: '恢復',
             error_invalid_filename: '非法文件名或文件已经存在, 请指定其它名称',
             error_modifying: '修改文件出错',
             error_deleting: '删除文件或文件夹出错',
@@ -783,7 +813,9 @@
             open: '打开',
             these_elements: '共 {{total}} 个',
             new_folder: '新文件夹',
-            download_as_zip: '下载的ZIP'
+            download_as_zip: '下载的ZIP',
+            myfiles: '',
+            trash: ''
         });
 
         $translateProvider.translations('ru', {
@@ -856,6 +888,8 @@
             rename: 'Переименовать',
             extract: 'Извлечь',
             compress: 'Сжать',
+            refresh: 'обновление',
+            restore: 'восстановить',
             error_invalid_filename: 'Имя неверное или уже существует, выберите другое',
             error_modifying: 'Произошла ошибка при модифицировании файла',
             error_deleting: 'Произошла ошибка при удалении',
@@ -881,7 +915,9 @@
             open: 'Открыть',
             these_elements: 'всего {{total}} елементов',
             new_folder: 'Новая папка',
-            download_as_zip: 'Download as ZIP'
+            download_as_zip: 'Download as ZIP',
+            myfiles: '',
+            trash: ''
         });
 
         $translateProvider.translations('ua', {
@@ -954,6 +990,8 @@
             rename: 'Переіменувати',
             extract: 'Розархівувати',
             compress: 'Архівувати',
+            refresh: 'Oновлення',
+            restore: 'відновлення',
             error_invalid_filename: 'Ім\'я певірне або вже існує, виберіть інше',
             error_modifying: 'Виникла помилка при редагуванні файлу',
             error_deleting: 'Виникла помилка при видаленні',
@@ -979,7 +1017,9 @@
             open: 'Відкрити',
             these_elements: 'усього {{total}} елементів',
             new_folder: 'Нова папка',
-            download_as_zip: 'Download as ZIP'
+            download_as_zip: 'Download as ZIP',
+            myfiles: '',
+            trash: ''
         });
 
         $translateProvider.translations('tr', {
@@ -1052,6 +1092,8 @@
             rename: 'Yeniden Adlandır',
             extract: 'Çıkart',
             compress: 'Sıkıştır',
+            refresh: 'Yenile',
+            restore: 'Geri getir',
             error_invalid_filename: 'Geçersiz dosya adı, bu dosya adına sahip dosya mevcut',
             error_modifying: 'Dosya düzenlenirken bir hata oluştu',
             error_deleting: 'Klasör veya dosya silinirken bir hata oluştu',
@@ -1077,7 +1119,9 @@
             open: 'Aç',
             these_elements: '{{total}} eleman',
             new_folder: 'Yeni Klasör',
-            download_as_zip: 'ZIP olarak indir'
+            download_as_zip: 'ZIP olarak indir',
+            myfiles: '',
+            trash: ''
         });
 
         $translateProvider.translations('fa', {
@@ -1150,6 +1194,8 @@
             rename: 'تغییر نام',
             extract: 'خروج از حالت فشرده',
             compress: 'فشرده سازی',
+            refresh: 'اعادة تنشيط',
+            restore: 'استعادة',
             error_invalid_filename: 'نام فایل مورد درست نیست و یا قبلا استفاده شده است، لطفا نام دیگری وارد کنید',
             error_modifying: 'در هنگام تغییر فایل خطایی پیش آمد',
             error_deleting: 'در هنگام حذف فایل خطایی پیش آمد',
@@ -1175,7 +1221,9 @@
             open: 'باز کردن',
             these_elements: 'تعداد {{total}} مورد',
             new_folder: 'پوشه جدید',
-            download_as_zip: 'به عنوان فایل فشرده دانلود شود'
+            download_as_zip: 'به عنوان فایل فشرده دانلود شود',
+            myfiles: '',
+            trash: ''
         });
 
         $translateProvider.translations('pl', {
@@ -1248,6 +1296,8 @@
             rename: 'Zmień nazwę',
             extract: 'Rozpakuj',
             compress: 'Skompresuj',
+            refresh: 'Odświeżać',
+            restore: 'Przywracać',
             error_invalid_filename: 'Błędna nazwa pliku lub plik o takiej nazwie już istnieje, proszę użyć innej nazwy',
             error_modifying: 'Wystąpił błąd podczas modyfikowania pliku',
             error_deleting: 'Wystąpił błąd podczas usuwania pliku lub folderu',
@@ -1273,7 +1323,9 @@
             open: 'Otwórz',
             these_elements: 'te {{total}} elementy?',
             new_folder: 'Nowy folder',
-            download_as_zip: 'Pobierz jako ZIP'
+            download_as_zip: 'Pobierz jako ZIP',
+            myfiles: '',
+            trash: ''
         });
 
         $translateProvider.translations('it', {
@@ -1345,6 +1397,8 @@
             rename: 'Rinomina',
             extract: 'Estrai',
             compress: 'Comprimi',
+            refresh: 'Ricaricare',
+            restore: 'Ristabilire',
             error_invalid_filename: 'Nome file non valido o già esistente, specificarne un\'altro',
             error_modifying: 'Errore durante la modifica del file',
             error_deleting: 'Errore durante l\'eliminazione del file o della cartella',
@@ -1370,7 +1424,9 @@
             open: 'Apri',
             these_elements: 'questi {{total}} elementi',
             new_folder: 'Nuova cartella',
-            download_as_zip: 'Scarica come file ZIP'
+            download_as_zip: 'Scarica come file ZIP',
+            myfiles: '',
+            trash: ''
         });
 
     }]);

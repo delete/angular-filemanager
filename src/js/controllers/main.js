@@ -1,13 +1,18 @@
 (function(angular, $) {
     'use strict';
     angular.module('FileManagerApp').controller('FileManagerCtrl', [
-        '$scope', '$rootScope', '$window', '$translate', 'fileManagerConfig', 'item', 'fileNavigator', 'apiMiddleware',
-        function($scope, $rootScope, $window, $translate, fileManagerConfig, Item, FileNavigator, ApiMiddleware) {
+        '$scope', '$rootScope', '$window', '$translate', 'fileManagerConfig', 'item', 'fileNavigator', 'apiMiddleware', 'navbarButtonsService',
+        function($scope, $rootScope, $window, $translate, fileManagerConfig, Item, FileNavigator, ApiMiddleware, navbarButtonsService) {
 
         var $storage = $window.localStorage;
+        
+        $rootScope.activePage = 'files';
+        $rootScope.showFooter = false;
+        $rootScope.isLoading = false;
+
         $scope.config = fileManagerConfig;
         $scope.reverse = false;
-        $scope.predicate = ['model.type', 'model.name'];        
+        $scope.predicate = ['model.type', 'model.name'];
         $scope.order = function(predicate) {
             $scope.reverse = ($scope.predicate[1] === predicate) ? !$scope.reverse : false;
             $scope.predicate[1] = predicate;
@@ -16,7 +21,14 @@
         $scope.fileNavigator = new FileNavigator();
         $scope.apiMiddleware = new ApiMiddleware();
         $scope.uploadFileList = [];
-        $scope.viewTemplate = $storage.getItem('viewTemplate') || 'main-icons.html';
+
+        var viewTemplate = $storage.getItem('viewTemplate') || false;
+        if ( viewTemplate == 'true') {
+            $scope.viewTemplate = true;
+        } else if (viewTemplate == 'false') {
+            $scope.viewTemplate = false;
+        }
+
         $scope.fileList = [];
         $scope.temps = [];
 
@@ -59,6 +71,7 @@
 
             if ($event && $event.target.hasAttribute('prevent')) {
                 $scope.temps = [];
+                navbarButtonsService.clearAllEnableButtons();
                 return;
             }
             if (! item || (isRightClick && $scope.isSelected(item))) {
@@ -77,6 +90,8 @@
                         !$scope.isSelected(current) && $scope.temps.push(current);
                         i++;
                     }
+                    navbarButtonsService.clearAllEnableButtons();
+                    enableButtons($scope.temps);
                     return;
                 }
                 if (lastSelected && list.indexOf(lastSelected) > indexInList) {
@@ -86,14 +101,39 @@
                         !$scope.isSelected(current) && $scope.temps.push(current);
                         i--;
                     }
+                    navbarButtonsService.clearAllEnableButtons();
+                    enableButtons($scope.temps);
                     return;
                 }
             }
             if ($event && !isRightClick && ($event.ctrlKey || $event.metaKey)) {
                 $scope.isSelected(item) ? $scope.temps.splice(indexInTemp, 1) : $scope.temps.push(item);
+
+                if (!$scope.isSelected) {
+                    navbarButtonsService.disableButtonTo(item.status);
+                } else {
+                    navbarButtonsService.enableButtonTo(item.status);
+                }
                 return;
             }
             $scope.temps = [item];
+
+            enableButtons($scope.temps);
+        };
+
+        function enableButtons(items) {
+            angular.forEach(items, function (item) {
+                item.status = 'TRASH';
+                navbarButtonsService.enableButtonTo(item.status);
+            });
+        }
+
+        $scope.isButtonEnabled = function(action) {
+            return navbarButtonsService.isEnable(action);
+        };
+
+        $scope.hasButtonsEnable = function() {
+            return navbarButtonsService.hasEnable();
         };
 
         $scope.singleSelection = function() {
@@ -121,6 +161,8 @@
         $scope.smartClick = function(item) {
             var pick = $scope.config.allowedActions.pickFiles;
             if (item.isFolder()) {
+                // Fix bug: when an folder is opened, the buttons still appears
+                navbarButtonsService.clearAllEnableButtons();
                 return $scope.fileNavigator.folderClick(item);
             }
 
@@ -134,10 +176,10 @@
             if (item.isImage()) {
                 if ($scope.config.previewImagesInModal) {
                     return $scope.openImagePreview(item);
-                } 
+                }
                 return $scope.apiMiddleware.download(item, true);
             }
-            
+
             if (item.isEditable()) {
                 return $scope.openEditItem(item);
             }
@@ -281,7 +323,7 @@
             });
         };
 
-        $scope.move = function() {           
+        $scope.move = function() {
             var anyItem = $scope.singleSelection() || $scope.temps[0];
             if (anyItem && validateSamePath(anyItem)) {
                 $scope.apiMiddleware.apiHandler.error = $translate.instant('error_cannot_move_same_path');
@@ -338,6 +380,21 @@
                 $scope.apiMiddleware.apiHandler.error = errorMsg;
             });
         };
+
+        // $scope.loadTrash = function () {
+        //     var path = 'Test';
+        //     $scope.fileNavigator.currentPath = [path];
+        //
+        //     $scope.fileNavigator.list().then(function(data) {
+        //         self.fileList = (data.result || []).map(function(file) {
+        //             return new Item(file, $scope.fileNavigator.currentPath);
+        //         });
+        //         $scope.fileNavigator.buildTree(path);
+        //         $scope.fileNavigator.onRefresh();
+        //     }).finally(function() {
+        //         $scope.fileNavigator.requesting = false;
+        //     });
+        // };
 
         var validateSamePath = function(item) {
             var selectedPath = $rootScope.selectedModalPath.join('');
