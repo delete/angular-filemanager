@@ -74,7 +74,11 @@
                             </div>
                         </div>
 
-                        <button class="btn btn-flat btn-sm" ng-click="$parent.setTemplate(!$parent.viewTemplate)" title="{{'icons' | translate}}" style="outline: none">
+                        <button
+                                ng-click="$parent.setTemplate(!$parent.viewTemplate)"
+                                class="btn btn-flat btn-sm"
+                                title="{{$parent.viewTemplate? ('icons' | translate) : ('list' | translate)}}" 
+                                style="outline: none">
                             <i class="glyphicon glyphicon-th-large" ng-show="$parent.viewTemplate"></i>
                             <i class="glyphicon glyphicon-th-list" ng-show="!$parent.viewTemplate"></i>
                         </button>

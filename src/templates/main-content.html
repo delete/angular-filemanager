@@ -14,15 +14,15 @@
                 </a>
             </th>
             <th class="hidden-sm hidden-xs" ng-hide="config.hideDate">
-                <a href="" ng-click="order('model.date')">
+                <a href="" ng-click="order('model.modified')">
                     {{"date" | translate}}
-                    <span class="sortorder" ng-show="predicate[1] === 'model.date'" ng-class="{reverse:reverse}"></span>
+                    <span class="sortorder" ng-show="predicate[1] === 'model.modified'" ng-class="{reverse:reverse}"></span>
                 </a>
             </th>
-            <th class="hidden-sm hidden-xs" ng-hide="config.hidePermissions">
-                <a href="" ng-click="order('model.permissions')">
-                    {{"permissions" | translate}}
-                    <span class="sortorder" ng-show="predicate[1] === 'model.permissions'" ng-class="{reverse:reverse}"></span>
+            <th class="hidden-sm hidden-xs">
+                <a href="" ng-click="order('model.statu')">
+                    {{"Status" | translate}}
+                    <span class="sortorder" ng-show="predicate[1] === 'model.status'" ng-class="{reverse:reverse}"></span>
                 </a>
             </th>
         </tr>
@@ -48,19 +48,27 @@
                 <a href="" title="{{item.model.name}} ({{item.model.size | humanReadableFileSize}})">
                     <i class="fa fa-folder" ng-show="item.model.type === 'dir'"></i>
                     <i class="fa fa-file" ng-show="item.model.type === 'file'"></i>
-                    {{item.model.name | strLimit : 64}}
+                    {{item.model.name | strLimit : 32}}
                 </a>
             </td>
             <td class="hidden-xs">
-                <span ng-show="item.model.type !== 'dir' || config.showSizeForDirectories">
+                <span ng-show="item.model.type !== 'dir'">
                     {{item.model.size | humanReadableFileSize}}
                 </span>
+                <span ng-show="item.model.type == 'dir'">
+                    {{item.model.size}} {{item.model.size == 1 ? 'item' : 'itens'}}
+                </span>
             </td>
-            <td class="hidden-sm hidden-xs" ng-hide="config.hideDate">
-                {{item.model.date | formatDate }}
+            <td class="hidden-sm hidden-xs">
+                {{item.model.modified | date: "dd/MM/yyyy HH:mm" }}
             </td>
-            <td class="hidden-sm hidden-xs" ng-hide="config.hidePermissions">
-                {{item.model.perms.toCode(item.model.type === 'dir'?'d':'-')}}
+            <td class="hidden-sm hidden-xs">
+                <md-icon
+                        class="md-table-icon"
+                        md-svg-src="assets/svg/{{item.model.status | statusToIcon}}.svg"
+                        ng-if="item.model.type == 'file'">
+                </md-icon>
+                <span ng-show="item.model.type == 'dir'">-</span>
             </td>
         </tr>
     </tbody>
