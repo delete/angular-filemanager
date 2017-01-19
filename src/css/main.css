@@ -88,6 +88,7 @@ textarea.code {
   margin-right: -21px;
   margin-bottom: 20px;
   margin-left: -20px;
+  font-size: 14px;
 }
 
 
@@ -314,6 +315,7 @@ table th > a:focus {
 
 .mb0 {
   margin-bottom: 0;
+  font-size: 12px;
 }
 
 .pointer {
@@ -409,7 +411,7 @@ table th > a:focus {
   margin-left: 5px;
 }
 
-.btn-link {
+.button-link {
     color: #747474;
     height: 100%;
     padding: 5px;
@@ -418,15 +420,21 @@ table th > a:focus {
     border-radius: 0;
     height: 100%;
     font-size: 14px !important;
+    outline: none;
+    background-color: transparent;
+    border: none;
 }
 
-.btn-link--first {
+.button-link:hover {
+    background-color: #eaeaea;
+}
+
+.button-link--first {
     margin-left: 0 !important;
 }
 
-.btn-link--active {
-    border-bottom: 2px solid #1976d2;
-    font-weight: 700;
+.button-link--active {
+    border-bottom: 1px solid #1976d2;
     color: #1976d2;
 }
 

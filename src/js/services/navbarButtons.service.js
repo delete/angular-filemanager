@@ -1,4 +1,4 @@
-(function(){
+(function() {
     /**
      * Show or hide the navbar buttons with context
      */
@@ -31,13 +31,13 @@
         return service;
 
         function enableButtonTo(buttonType) {
-            angular.forEach(buttonsTypes[buttonType], function (button) {
+            angular.forEach(buttonsTypes[buttonType], function(button) {
                 enableButtons.push(button);
             });
         }
 
         function disableButtonTo(buttonType) {
-            angular.forEach(buttonsTypes[buttonType], function (button) {
+            angular.forEach(buttonsTypes[buttonType], function(button) {
                 removeFromArray(button, enableButtons);
             });
         }

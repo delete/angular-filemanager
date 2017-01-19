@@ -1,16 +1,16 @@
 <nav class="navbar">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-4 col-md-2 hidden-xs" style="height: 33px;">
+            <div class="col-sm-4 col-md-2" style="height: 33px;">
                 <div ng-show="!config.breadcrumb">
-                    <a class="navbar-brand hidden-xs ng-binding btn-link btn-link--first btn-link--active" href="">{{'myfiles' | translate}}</a>
-                    <a class="navbar-brand hidden-xs ng-binding btn-link">{{'trash' | translate}}</a>
+                    <button class="navbar-brand ng-binding button-link button-link--first button-link--active" ng-click="fileNavigator.refresh()">{{'myfiles' | translate}}</button>
+                    <button class="navbar-brand ng-binding button-link" ng-click="">{{'trash' | translate}}</button>
                 </div>
                 <div ng-include="config.tplPath + '/current-folder-breadcrumb.html'" ng-show="config.breadcrumb">
                 </div>
             </div>
 
-            <div class="col-sm-4 col-md-8 hidden-xs" ng-class="{'navbar-right-border': hasButtonsEnable()}" style="height: 28px;padding-right: 9px;">
+            <div class="col-sm-4 col-md-8" ng-class="{'navbar-right-border': hasButtonsEnable()}" style="height: 28px;padding-right: 9px;">
                 <div class="navbar-collapse">
                     <div class="navbar-form navbar-right text-right">
                         <div class="btn-group">
@@ -53,12 +53,7 @@
             <div class="col-sm-4 col-md-2" style="height: 33px;padding-left: 0px;">
                 <div class="navbar-collapse">
                     <div class="navbar-form navbar-right text-right">
-                        <!-- <div class="pull-left visible-xs" ng-if="fileNavigator.currentPath.length">
-                            <button class="btn btn-primary btn-flat" ng-click="fileNavigator.upDir()">
-                                <i class="glyphicon glyphicon-chevron-left"></i>
-                            </button>
-                            {{fileNavigator.getCurrentFolderName() | strLimit : 12}}
-                        </div> -->
+
                         <div class="btn-group">
                             <button class="btn btn-flat btn-sm dropdown-toggle" ng-click="$parent.fileNavigator.refresh()" type="button" data-toggle="dropdown" aria-expanded="true" title="{{'refresh' | translate}}">
                                 <i class="fa fa-refresh"></i>
@@ -67,7 +62,7 @@
 
                         <div class="btn-group">
                             <button class="btn btn-flat btn-sm dropdown-toggle" type="button" id="dropDownMenuSearch" data-toggle="dropdown" aria-expanded="true" title="{{'search' | translate}}">
-                                <i class="glyphicon glyphicon-search mr2"></i>
+                                <i class="fa fa-search"></i>
                             </button>
                             <div class="dropdown-menu animated fast fadeIn pull-right" role="menu" aria-labelledby="dropDownMenuLang">
                                 <input type="text" class="search-input" ng-show="config.searchForm" placeholder="{{'search' | translate}}..." ng-model="$parent.query">
@@ -77,10 +72,10 @@
                         <button
                                 ng-click="$parent.setTemplate(!$parent.viewTemplate)"
                                 class="btn btn-flat btn-sm"
-                                title="{{$parent.viewTemplate? ('icons' | translate) : ('list' | translate)}}" 
+                                title="{{$parent.viewTemplate? ('icons' | translate) : ('list' | translate)}}"
                                 style="outline: none">
-                            <i class="glyphicon glyphicon-th-large" ng-show="$parent.viewTemplate"></i>
-                            <i class="glyphicon glyphicon-th-list" ng-show="!$parent.viewTemplate"></i>
+                            <i class="fa fa-th-large" ng-show="$parent.viewTemplate"></i>
+                            <i class="fa fa-th-list" ng-show="!$parent.viewTemplate"></i>
                         </button>
 
                         <button class="btn btn-flat btn-sm"
@@ -93,7 +88,7 @@
 
                         <div class="btn-group">
                             <button class="btn btn-flat btn-sm dropdown-toggle" type="button" id="more" data-toggle="dropdown" aria-expanded="true" title="{{'actions' | translate}}">
-                                <i class="glyphicon glyphicon-option-vertical"></i>
+                                <i class="fa fa-ellipsis-v"></i>
                             </button>
 
                             <ul class="dropdown-menu scrollable-menu animated fast fadeIn pull-right" role="menu" aria-labelledby="more">
