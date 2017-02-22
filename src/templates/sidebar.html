@@ -1,20 +1,36 @@
 <ul class="nav nav-sidebar file-tree-root" style="padding-top:17px">
-    <li ng-repeat="item in fileNavigator.history" ng-include="'folder-branch-item'" ng-class="{'activee': item.name == fileNavigator.currentPath.join('/')}"></li>
+    <li ng-repeat="item in fileNavigator.history" ng-include="'folder-branch-item'" ng-class="{'active': item.name == fileNavigator.currentPath.join('/')}"></li>
 </ul>
 
 <script type="text/ng-template" id="folder-branch-item">
-    <a href="" ng-click="fileNavigator.folderClick(item.item)" class="animated fast fadeInDown">
+    <a href="" 
+            ng-click="fileNavigator.folderClick(item.item)" 
+            class="animated fast fadeInDown"
+            ng-class="{
+                'trash trash_gap': (item.name.split('/').pop().indexOf('recycle.') > -1),
+                'active': (item.name == fileNavigator.currentPath.join('/'))
+            }">
 
         <span class="point">
             <i class="fa fa-chevron-down" ng-show="isInThisPath(item.name)"></i>
             <i class="fa fa-chevron-right" ng-show="!isInThisPath(item.name)"></i>
         </span>
 
-        <i class="fa fa-folder-open" ng-show="isInThisPath(item.name)"></i>
-        <i class="fa fa-folder" ng-show="!isInThisPath(item.name)"></i>
-        {{ (item.name.split('/').pop() || '/') | strLimit : 30 }}
+        <i class="fa" 
+                ng-class="{
+                    'fa-trash trash': item.name.split('/').pop().indexOf('recycle.') > -1,
+                    'fa-folder-open': item.name.split('/').pop().indexOf('recycle.') == -1
+                }"
+                ng-show="isInThisPath(item.name)"></i>
+        <i class="fa" 
+                ng-class="{
+                    'fa-trash': item.name.split('/').pop().indexOf('recycle.') > -1,
+                    'fa-folder': item.name.split('/').pop().indexOf('recycle.') == -1
+                }"
+                ng-show="!isInThisPath(item.name)"></i>
+        {{ (item.name.split('/').pop() || '/') | strLimit : 30 | formatRecycle }}
     </a>
     <ul class="nav nav-sidebar">
-        <li ng-repeat="item in item.nodes" ng-include="'folder-branch-item'" ng-class="{'activee': item.name == fileNavigator.currentPath.join('/')}"></li>
+        <li ng-repeat="item in item.nodes" ng-include="'folder-branch-item'"></li>
     </ul>
 </script>

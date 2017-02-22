@@ -1,15 +1,24 @@
-(function(angular) {
+(function() {
     'use strict';
-    var app = angular.module('FileManagerApp');
+    angular
+        .module('FileManagerApp')
+        .directive('angularFilemanager', angularFilemanager)
+        .directive('ngFile', ngFile)
+        .directive('ngRightClick', ngRightClick);
 
-    app.directive('angularFilemanager', ['$parse', 'fileManagerConfig', function($parse, fileManagerConfig) {
+    angularFilemanager.$inject = ['$parse', 'fileManagerConfig'];
+    /* @ngInject */
+    function angularFilemanager($parse, fileManagerConfig) {
         return {
             restrict: 'EA',
             templateUrl: fileManagerConfig.tplPath + '/main.html'
         };
-    }]);
+    }
 
-    app.directive('ngFile', ['$parse', function($parse) {
+
+    ngFile.$inject = ['$parse'];
+    /* @ngInject */
+    function ngFile($parse) {
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
@@ -23,18 +32,21 @@
                 });
             }
         };
-    }]);
+    }
 
-    app.directive('ngRightClick', ['$parse', function($parse) {
+
+    ngRightClick.$inject = ['$parse'];
+    /* @ngInject */
+    function ngRightClick($parse) {
         return function(scope, element, attrs) {
             var fn = $parse(attrs.ngRightClick);
             element.bind('contextmenu', function(event) {
                 scope.$apply(function() {
                     event.preventDefault();
-                    fn(scope, {$event: event});
+                    fn(scope, { $event: event });
                 });
             });
         };
-    }]);
-    
-})(angular);
+    }
+
+})();

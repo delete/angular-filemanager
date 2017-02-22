@@ -1,4 +1,4 @@
-(function(angular) {
+(function() {
     'use strict';
     angular.module('FileManagerApp').service('chmod', function () {
 
@@ -106,4 +106,4 @@
 
         return Chmod;
     });
-})(angular);
+})();

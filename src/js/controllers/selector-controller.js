@@ -1,6 +1,13 @@
-(function(angular) {
+(function() {
     'use strict';
-    angular.module('FileManagerApp').controller('ModalFileManagerCtrl', ['$scope', '$rootScope', 'fileNavigator', function($scope, $rootScope, FileNavigator) {
+    angular
+        .module('FileManagerApp')
+        .controller('ModalFileManagerCtrl', ModalFileManagerCtrl);
+
+    ModalFileManagerCtrl.$inject = ['$scope', '$rootScope', 'fileNavigator'];
+
+    /* @ngInject */
+    function ModalFileManagerCtrl($scope, $rootScope, FileNavigator) {
 
         $scope.reverse = false;
         $scope.predicate = ['model.type', 'model.name'];
@@ -53,5 +60,5 @@
             return result.replace(/\/\//, '/');
         };
 
-    }]);
-})(angular);
+    }
+})();

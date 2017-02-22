@@ -13,7 +13,7 @@
         var enableButtons = [];
 
         var buttonsTypes = {
-            'SYNCHRONIZED': ['remove'],
+            'SYNCHRONIZED': ['remove', 'restoreBackup'],
             'NOT_EXISTS_LOCAL': ['remove', 'download'],
             'TRASH': ['remove', 'download', 'restore'],
             'OUTDATED_REMOTE': ['remove', 'download']

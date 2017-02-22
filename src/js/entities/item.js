@@ -1,6 +1,13 @@
-(function(angular) {
+(function() {
     'use strict';
-    angular.module('FileManagerApp').factory('item', ['fileManagerConfig', 'chmod', function(fileManagerConfig, Chmod) {
+    angular
+        .module('FileManagerApp')
+        .factory('item', item);
+
+    item.$inject = ['fileManagerConfig', 'chmod'];
+
+    /* @ngInject */
+    function item(fileManagerConfig, Chmod) {
 
         var Item = function(model, path) {
             var rawModel = {
@@ -16,8 +23,8 @@
                     var path = this.path.filter(Boolean);
                     return ('/' + path.join('/') + '/' + this.name).replace(/\/\//, '/');
                 },
-                modified: model.modified,
-                status: model.status
+                modified: model && model.modified || '',
+                status: model && model.status || ''
             };
 
             this.error = '';
@@ -66,5 +73,5 @@
         };
 
         return Item;
-    }]);
-})(angular);
+    }
+})();

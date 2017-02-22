@@ -39,8 +39,17 @@
         <div ng-include data-src="'error-bar'" class="clearfix"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="apiMiddleware.apiHandler.inprocess">{{"cancel" | translate}}</button>
-        <button type="submit" class="btn btn-primary" ng-disabled="apiMiddleware.apiHandler.inprocess" autofocus="autofocus">{{"remove" | translate}}</button>
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="apiMiddleware.apiHandler.inprocess">{{"cancel" | translate}}</button> -->
+        <md-button type="button"
+            data-dismiss="modal"
+            ng-disabled="apiMiddleware.apiHandler.inprocess">
+          {{"cancel" | translate}}
+        </md-button>
+        <!-- <button type="submit" class="btn btn-primary" ng-disabled="apiMiddleware.apiHandler.inprocess" autofocus="autofocus">{{"remove" | translate}}</button> -->
+        <md-button class="md-raised my-dialog__button button_filled button_activated" 
+            ng-disabled="apiMiddleware.apiHandler.inprocess"
+            autofocus="autofocus"
+            type="submit">{{'remove' | translate}}</md-button>
       </div>
       </form>
     </div>
@@ -253,9 +262,14 @@
               <div ng-include data-src="'error-bar'" class="clearfix"></div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="apiMiddleware.apiHandler.inprocess">{{"cancel" | translate}}</button>
+              <!-- <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="apiMiddleware.apiHandler.inprocess">{{"cancel" | translate}}</button> -->
+            <md-button type="button"
+                data-dismiss="modal"
+                ng-disabled="apiMiddleware.apiHandler.inprocess">
+              {{"cancel" | translate}}
+            </md-button>
               <!-- <button type="submit" class="btn btn-primary" ng-disabled="apiMiddleware.apiHandler.inprocess">{{'create' | translate}}</button> -->
-              <md-button class="md-raised my-dialog__button my-dialog__button_filled my-dialog__button_activated" ng-disabled="apiMiddleware.apiHandler.inprocess" type="submit">{{'create' | translate}}</md-button>
+              <md-button class="md-raised my-dialog__button button_filled button_activated" ng-disabled="apiMiddleware.apiHandler.inprocess" type="submit">{{'create' | translate}}</md-button>
             </div>
         </form>
     </div>
@@ -292,20 +306,25 @@
                     <p class="list-group-item-text">{{uploadFile.size | humanReadableFileSize}}</p>
                   </li>
                 </ul>
-                <div ng-show="apiMiddleware.apiHandler.inprocess">
+                <!-- <div ng-show="apiMiddleware.apiHandler.inprocess">
                   <em>{{"uploading" | translate}}... {{apiMiddleware.apiHandler.progress}}%</em>
                   <div class="progress mb0">
                     <div class="progress-bar active" role="progressbar" aria-valuenow="{{apiMiddleware.apiHandler.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{apiMiddleware.apiHandler.progress}}%"></div>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div ng-include data-src="'error-bar'" class="clearfix"></div>
             </div>
             <div class="modal-footer">
               <div>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">{{"cancel" | translate}}</button>
+                  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">{{"cancel" | translate}}</button> -->
+                <md-button type="button"
+                    data-dismiss="modal"
+                    ng-disabled="apiMiddleware.apiHandler.inprocess">
+                  {{"cancel" | translate}}
+                </md-button>
                   <!-- <button type="submit" class="btn btn-primary" ng-disabled="!$parent.uploadFileList.length || apiMiddleware.apiHandler.inprocess">{{'upload' | translate}}</button> -->
-                  <md-button class="md-raised my-dialog__button " ng-class="{'my-dialog__button_filled my-dialog__button_activated': $parent.uploadFileList.length }" ng-disabled="!$parent.uploadFileList.length || apiMiddleware.apiHandler.inprocess" type="submit">{{'upload' | translate}}</md-button>
+                  <md-button class="md-raised my-dialog__button " ng-class="{'button_filled button_activated': $parent.uploadFileList.length }" ng-disabled="!$parent.uploadFileList.length || apiMiddleware.apiHandler.inprocess" type="submit">{{'upload' | translate}}</md-button>
               </div>
             </div>
         </form>

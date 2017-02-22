@@ -1,17 +1,21 @@
-(function(angular) {
+(function() {
     'use strict';
-    angular.module('FileManagerApp').provider('fileManagerConfig', function() {
+    angular
+        .module('FileManagerApp')
+        .provider('fileManagerConfig', fileManagerConfig);
 
+    function fileManagerConfig(configurationsProvider) {
+        var URI = configurationsProvider.ApiUri();
         var values = {
             appName: 'backupApp',
             defaultLang: 'pt',
 
-            listUrl: 'https://private-0d24f0-alterdatabkp.apiary-mock.com/v1/files',
-            uploadUrl: 'http://angular-filemanager.zendelsolutions.com/bridges/php/handler.php',
+            listUrl: URI + '/files',
+            uploadUrl: URI + '/files/upload',
             renameUrl: 'http://angular-filemanager.zendelsolutions.com/bridges/php/handler.php',
             copyUrl: 'http://angular-filemanager.zendelsolutions.com/bridges/php/handler.php',
             moveUrl: 'http://angular-filemanager.zendelsolutions.com/bridges/php/handler.php',
-            removeUrl: 'http://angular-filemanager.zendelsolutions.com/bridges/php/handler.php',
+            removeUrl: URI + '/files/remove',
             editUrl: 'http://angular-filemanager.zendelsolutions.com/bridges/php/handler.php',
             getContentUrl: 'http://angular-filemanager.zendelsolutions.com/bridges/php/handler.php',
             createFolderUrl: 'http://angular-filemanager.zendelsolutions.com/bridges/php/handler.php',
@@ -20,6 +24,8 @@
             compressUrl: 'http://angular-filemanager.zendelsolutions.com/bridges/php/handler.php',
             extractUrl: 'http://angular-filemanager.zendelsolutions.com/bridges/php/handler.php',
             permissionsUrl: 'http://angular-filemanager.zendelsolutions.com/bridges/php/handler.php',
+            restoreUrl: URI + '/files/restore',
+            downloadFromCloudUrl: URI + '/files/download',
             basePath: '/',
 
             searchForm: true,
@@ -49,7 +55,7 @@
             showExtensionIcons: false,
             showSizeForDirectories: false,
             useBinarySizePrefixes: false,
-            downloadFilesByAjax: false,
+            downloadFilesByAjax: true,
             previewImagesInModal: true,
             enablePermissionsRecursive: true,
             compressAsync: false,
@@ -70,6 +76,5 @@
                 angular.extend(values, constants);
             }
         };
-
-    });
-})(angular);
+    }
+})();

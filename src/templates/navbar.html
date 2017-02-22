@@ -1,21 +1,21 @@
-<nav class="navbar">
+<nav class="navbar" style="margin-bottom: 0; min-height: 0;">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-4 col-md-2" style="height: 33px;">
+        <div layout >
+            <div flex style="height: 33px;">
                 <div ng-show="!config.breadcrumb">
-                    <button class="navbar-brand ng-binding button-link button-link--first button-link--active" ng-click="fileNavigator.refresh()">{{'myfiles' | translate}}</button>
-                    <button class="navbar-brand ng-binding button-link" ng-click="">{{'trash' | translate}}</button>
+                    <button class="navbar-brand ng-binding button-link button-link--first button-link--active" ng-click="$parent.loadMyFiles()">{{'myfiles' | translate}}</button>
+                    <!-- <button class="navbar-brand ng-binding button-link" ng-click="$parent.loadTrash()">{{'trash' | translate}}</button> -->
                 </div>
                 <div ng-include="config.tplPath + '/current-folder-breadcrumb.html'" ng-show="config.breadcrumb">
                 </div>
             </div>
 
-            <div class="col-sm-4 col-md-8" ng-class="{'navbar-right-border': hasButtonsEnable()}" style="height: 28px;padding-right: 9px;">
+            <div ng-class="{'navbar-right-border': hasButtonsEnable() || selectionHas('dir')}" style="height: 28px;padding-right: 9px;">
                 <div class="navbar-collapse">
                     <div class="navbar-form navbar-right text-right">
                         <div class="btn-group">
                             <button class="btn btn-flat btn-sm"
-                                    ng-click="$parent.download()"
+                                    ng-click="$parent.downloadFromCloud()"
                                     ng-show="isButtonEnabled('download') && !selectionHas('dir')"
                                     type="button"
                                     aria-expanded="true"
@@ -23,19 +23,12 @@
                                 <i class="fa fa-download"></i>
                             </button>
                             <button class="btn btn-flat btn-sm"
+                                    ng-click="$parent.restoreFromTrash()"
                                     ng-show="isButtonEnabled('restore') && !selectionHas('dir')"
                                     type="button"
                                     aria-expanded="true"
                                     title="{{'restore' | translate}}">
                                 <i class="fa fa-recycle"></i>
-                            </button>
-                            <button class="btn btn-flat btn-sm"
-                                    ng-click="$parent.modal('remove')"
-                                    ng-show="isButtonEnabled('remove') && !selectionHas('dir')"
-                                    type="button"
-                                    aria-expanded="true"
-                                    title="{{'remove' | translate}}">
-                                <i class="fa fa-trash"></i>
                             </button>
                             <button class="btn btn-flat btn-sm"
                                     ng-click="smartClick(singleSelection())"
@@ -45,12 +38,29 @@
                                     title="{{'open' | translate}}">
                                 <i class="fa fa-folder-open"></i>
                             </button>
+                            <button class="btn btn-flat btn-sm"
+                                    ng-click="$parent.restoreBackup()"
+                                    ng-show="isButtonEnabled('restoreBackup') && selectionHas('abkp')"
+                                    type="button"
+                                    aria-expanded="true"
+                                    title="{{'restore_backup' | translate}}">
+                                    <!-- database icon is bigger than the others -->
+                                <i class="fa fa-database" style="font-size: 16px;"></i>
+                            </button>
+                            <button class="btn btn-flat btn-sm"
+                                    ng-click="$parent.modal('remove')"
+                                    ng-show="isButtonEnabled('remove') && !selectionHas('dir')"
+                                    type="button"
+                                    aria-expanded="true"
+                                    title="{{'remove' | translate}}">
+                                <i class="fa fa-trash"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-4 col-md-2" style="height: 33px;padding-left: 0px;">
+            <div style="height: 33px;padding-left: 0px;">
                 <div class="navbar-collapse">
                     <div class="navbar-form navbar-right text-right">
 
@@ -65,7 +75,7 @@
                                 <i class="fa fa-search"></i>
                             </button>
                             <div class="dropdown-menu animated fast fadeIn pull-right" role="menu" aria-labelledby="dropDownMenuLang">
-                                <input type="text" class="search-input" ng-show="config.searchForm" placeholder="{{'search' | translate}}..." ng-model="$parent.query">
+                                <input type="text" class="search-input" ng-show="config.searchForm" placeholder="{{'search' | translate}}..." ng-model="$parent.query" autofocus>
                             </div>
                         </div>
 
@@ -80,13 +90,13 @@
 
                         <button class="btn btn-flat btn-sm"
                                 ng-click="modal('uploadfile')"
-                                ng-show="config.allowedActions.upload"
+                                ng-show="config.allowedActions.upload && !$parent.amIOnTrash()"
                                 style="outline: none"
                                 title="{{'upload_files' | translate}}">
                             <i class="fa fa-cloud-upload"></i>
                         </button>
 
-                        <div class="btn-group">
+                        <div class="btn-group" ng-if="!$parent.amIOnTrash()">
                             <button class="btn btn-flat btn-sm dropdown-toggle" type="button" id="more" data-toggle="dropdown" aria-expanded="true" title="{{'actions' | translate}}">
                                 <i class="fa fa-ellipsis-v"></i>
                             </button>
